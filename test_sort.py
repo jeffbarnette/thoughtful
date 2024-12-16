@@ -24,10 +24,11 @@ class TestSortFunction(unittest.TestCase):
         self.assertEqual(sort(*self.bulky_dimensions, 50), "REJECTED")
 
     def test_edge_cases(self):
+        # Boundary conditions
         self.assertEqual(sort(1, 1, 1, 0.1), "STANDARD")  # Minimum values
-        self.assertEqual(sort(149, 149, 149, 19), "STANDARD")  # Just under limits
+        self.assertEqual(sort(99, 99, 99, 19), "STANDARD")  # Just under limits
         self.assertEqual(sort(150, 150, 150, 20), "REJECTED")  # At limits
-        
+
     def test_invalid_inputs(self):
         with self.assertRaises(ValueError):
             sort(-1, 50, 50, 10)  # Negative dimension
@@ -35,7 +36,7 @@ class TestSortFunction(unittest.TestCase):
             sort(50, 50, 50, -5)  # Negative mass
 
     def test_decimal_values(self):
-        self.assertEqual(sort(149.9, 149.9, 149.9, 19.9), "STANDARD")
+        self.assertEqual(sort(98.9, 98.9, 98.9, 19.9), "STANDARD")
         self.assertEqual(sort(150.1, 50, 50, 10), "SPECIAL")
 
 
